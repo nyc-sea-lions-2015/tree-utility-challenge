@@ -1,15 +1,14 @@
-
-def file_tree(item)
+def file_tree(item, counter)
   Dir.glob("#{item}/*").each do |filename|
-    f_name = File.basename(filename)
-    puts "\t" + f_name
-    if File.directory?(filename)
-      print "\t"
-      file_tree(filename)
+    if File.file?(filename)
+      puts "|   "*counter + "|---" + File.basename(filename)
+    elsif File.directory?(filename)
+      puts "|   "*counter + "|---" + File.basename(filename)
+      counter += 1
+      file_tree(filename, counter)
+      counter -= 1
     end
   end
 end
 
-file_tree(Dir.pwd)
-
-# idea: append paths to array. add tabs passed on location in array
+file_tree(Dir.pwd, 0)
