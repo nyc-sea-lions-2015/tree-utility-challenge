@@ -24,7 +24,8 @@
 class Tree
   attr_accessor :counter
 
-  def show_tree(path, counter)
+  def show_tree(path, counter) # passing the counter as a parameter to the method instead of using a global variable
+                               # prevents the counter from going up and up forever.
     Dir[path + '/*'].each do |sub_directory|
       puts ("   " * counter) + sub_directory
       show_tree(sub_directory, counter+1)
@@ -33,4 +34,7 @@ class Tree
 end
 
 test = Tree.new
-test.show_tree('.', 0)
+test.show_tree('.', 0)  # passing the counter as a parameter to the method instead of using a global variable
+                        # prevents the counter from going up and up forever.
+
+
