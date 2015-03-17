@@ -16,11 +16,7 @@ def list_directory(current_directory = '*', stack_level = 0, last_file = false)
   dir_length  = directory.length - 1
   directory.each_with_index do | f, index|
     puts
-    if last_file
-      stack_level.times {print "    "}
-    else
-      stack_level.times {print "│   " }
-    end
+    stack_level.times {print "│   " }
     print "├── " if index < dir_length
     print "└── " if index == dir_length
     print File.basename(f)
@@ -33,5 +29,3 @@ if ARGV[0].nil?
 else
   list_directory(ARGV[0].to_s)
 end
-
-#│   │   ├── └──
