@@ -1,6 +1,5 @@
 def tree(path = "*", level=0)
   Dir[path].each do |directory|
-    next if directory == "."
     if File.directory?(directory)
       print "  " * level
       print "#{File.basename(directory)} \n"
