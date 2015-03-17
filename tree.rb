@@ -27,7 +27,7 @@ class Tree
   def show_tree(path, counter) # passing the counter as a parameter to the method instead of using a global variable
                                # prevents the counter from going up and up forever.
     Dir[path + '/*'].each do |sub_directory|
-      puts ("   " * counter) + sub_directory
+      puts ("   " * counter) + File.basename(sub_directory)
       show_tree(sub_directory, counter+1)
     end
   end
