@@ -1,5 +1,5 @@
-def tree
-  p Dir['*']
+def tree(directory)
+  p Dir[directory]
 end
 
-tree
+tree('*')
