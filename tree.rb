@@ -19,12 +19,29 @@
 def tree
   y = ("./*")
   Dir[y].each {|x|
-    puts x
+    puts Dir.getwd + "/" + File.basename(x)
     if File.directory?(x) == true
       Dir.chdir(x)
       tree
+      Dir.chdir('../')
     end}
 end
+
+# tree
+
+# def tree
+#   filepath = "."
+#   y = ("./*")
+#   Dir[y].each {|x|
+#     if File.directory?(x) == true
+#       #filepath << File.basename(x)
+#       Dir.chdir(x)
+
+#       tree
+#     else
+#       puts Dir.pwd
+#     end}
+# end
 
 tree
 # puts Dir.glob('./**')
