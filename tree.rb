@@ -10,23 +10,22 @@ def tree(path = "*", stack = 0, finish_stack_count = 0)
     parent = item.partition("/")[0] + "/"
     # p "parent: " + parent
     if parent == Dir.glob("*/").last && index == current_directory.length - 1
-      # puts "finish: #{finish_stack_count} stack: #{stack}"
-      print "    "*finish_stack_count
-      print "│   "*stack if stack > 0
-      puts "└── " + File.basename("/#{item}")
+      print_node("/#{item}", "└── ", stack, finish_stack_count)
       finish_stack_count += 1
       stack -= 1
     elsif index == current_directory.length - 1 && Dir.glob("#{item}/*") == []
-      print "    "*finish_stack_count
-      print "│   "*stack if stack > 0
-      puts "└── " + File.basename("/#{item}")
+      print_node("/#{item}", "└── ", stack, finish_stack_count)
     else
-      print "    "*finish_stack_count
-      print "│   "*stack if stack > 0
-      puts "├── " + File.basename("/#{item}")
+      print_node("/#{item}", "├── ", stack, finish_stack_count)
     end
     tree("#{item}/*", stack + 1, finish_stack_count)
   end
+end
+
+def print_node(file, symbol, stack, finish_stack_count)
+  print "    "*finish_stack_count
+  print "│   "*stack if stack > 0
+  puts symbol + File.basename(file)
 end
 
 puts '.'
