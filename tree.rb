@@ -2,13 +2,7 @@
 def tree(path = "*", stack = 0, finish_stack_count = 0)
   current_directory = Dir.glob(path)
   current_directory.each_with_index do |item, index|
-    # p current_directory
-    # p Dir.glob("#{item}/*")
-    # p Dir.glob("*/")
-    # p "last: " + Dir.glob("*/").last
-    # p "item: " + item
     parent = item.partition("/")[0] + "/"
-    # p "parent: " + parent
     if parent == Dir.glob("*/").last && index == current_directory.length - 1
       print_node("/#{item}", "└── ", stack, finish_stack_count)
       finish_stack_count += 1
